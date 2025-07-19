@@ -1,0 +1,6 @@
+@echo off
+echo Iniciando o servidor Flask...
+start python app.py
+
+echo Iniciando o bot do Discord...
+start python bot.py

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros de Horas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Registros de Horas de Trabalho</h1>
+
+    {% if registros %}
+        <table>
+            <tr>
+                <th>Usuário</th>
+                <th>Dias Trabalhados</th>
+                <th>Pausas</th>
+                <th>Total Trabalhado</th>
+                <th>Total Pausas</th>
+            </tr>
+            {% for usuario, dados in registros.items() %}
+                <tr>
+                    <td>{{ usuario }}</td>
+                    <td>
+                        <ul>
+                            {% for dia in dados['dias'] %}
+                                <li>Entrada: {{ dia['entrada'] }} | Saída: {{ dia['saida'] }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            {% for pausa in dados['pausas'] %}
+                                <li>Início: {{ pausa['inicio'] }} | Fim: {{ pausa['fim'] }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>{{ dados['total_trabalhado'] }}</td>
+                    <td>{{ dados['total_pausas'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Não há registros de horas.</p>
+    {% endif %}
+
+</body>
+</html>

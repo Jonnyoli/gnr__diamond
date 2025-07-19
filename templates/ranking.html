@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking da Semana</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Ranking da Semana</h1>
+        <p>Veja o ranking dos jogadores mais bem classificados esta semana.</p>
+    </header>
+
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Jogador</th>
+                    <th>Pontos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i, jogador in enumerate(ranking) %}
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ jogador.nome }}</td>
+                        <td>{{ jogador.pontos }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ranking do Jogo</p>
+    </footer>
+</body>
+</html>
